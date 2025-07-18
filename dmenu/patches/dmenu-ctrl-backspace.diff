@@ -1,0 +1,20 @@
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -370,8 +370,15 @@
+ 			while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
+ 				insert(NULL, nextrune(-1) - cursor);
+ 			break;
+-		case XK_y: /* paste selection */
+-		case XK_Y:
++		case XK_BackSpace: /* delete word */
++			while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]))
++				insert(NULL, nextrune(-1) - cursor);
++			while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
++				insert(NULL, nextrune(-1) - cursor);
++           goto draw;
++			break;
++		case XK_v: /* paste selection */
++		case XK_V:
+ 			XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY,
+ 			                  utf8, utf8, win, CurrentTime);
+ 			return;
