@@ -1,4 +1,4 @@
-# Suckless software
+# Suckless softwares
 
 ## DWM screenshots
 
