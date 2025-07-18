@@ -1,4 +1,6 @@
-# DWM-config
+# Suckless software
+
+## DWM screenshots
 
 ![screenshot1](screenshots/screenshot1.png)
 
