@@ -1,0 +1,33 @@
+--- a/config.def.h
++++ b/config.def.h
+@@ -207,6 +207,7 @@
+ 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+ 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+ 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
++	{ TERMMOD,              XK_W,           quit,           {.i =  0} },
+ 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+ 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+ 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+--- a/x.c
++++ b/x.c
+@@ -59,6 +59,7 @@
+ static void zoomabs(const Arg *);
+ static void zoomreset(const Arg *);
+ static void ttysend(const Arg *);
++static void quit(const Arg *);
+ 
+ /* config.h for applying patches and the configuration. */
+ #include "config.h"
+@@ -328,6 +329,12 @@
+ 	ttywrite(arg->s, strlen(arg->s), 1);
+ }
+ 
++static void
++quit(const Arg *arg)
++{
++    exit(0);
++}
++
+ int
+ evcol(XEvent *e)
+ {
